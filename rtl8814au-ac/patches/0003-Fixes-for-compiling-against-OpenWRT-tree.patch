@@ -1,0 +1,34 @@
+From 6d93dec0bb20562cd4059eb11f0c535c30da7cc2 Mon Sep 17 00:00:00 2001
+From: Jason Tsang <jasontsang.dev@gmail.com>
+Date: Thu, 6 Jan 2022 08:23:16 +0800
+Subject: [PATCH] Fixes for compiling against OpenWRT tree
+
+---
+ os_dep/linux/ioctl_cfg80211.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/os_dep/linux/ioctl_cfg80211.c b/os_dep/linux/ioctl_cfg80211.c
+index c32f770..3cd1e28 100644
+--- a/os_dep/linux/ioctl_cfg80211.c
++++ b/os_dep/linux/ioctl_cfg80211.c
+@@ -7517,7 +7517,7 @@ exit:
+ 	return ret;
+ }
+ 
+-#if (LINUX_VERSION_CODE >= KERNEL_VERSION(5, 8, 0))
++#if (LINUX_VERSION_CODE >= KERNEL_VERSION(5, 8, 0)) || defined(BUILD_OPENWRT)
+ static void cfg80211_rtw_update_mgmt_frame_register(struct wiphy *wiphy,
+ 					struct wireless_dev *wdev,
+ 					struct mgmt_frame_regs *upd)
+@@ -9928,7 +9928,7 @@ static struct cfg80211_ops rtw_cfg80211_ops = {
+ 
+ #if (LINUX_VERSION_CODE >= KERNEL_VERSION(2, 6, 37)) || defined(COMPAT_KERNEL_RELEASE)
+ 	.mgmt_tx = cfg80211_rtw_mgmt_tx,
+-#if (LINUX_VERSION_CODE >= KERNEL_VERSION(5, 8, 0))
++#if (LINUX_VERSION_CODE >= KERNEL_VERSION(5, 8, 0)) || defined(BUILD_OPENWRT)
+ 	.update_mgmt_frame_registrations = cfg80211_rtw_update_mgmt_frame_register,
+ #else
+ 	.mgmt_frame_register = cfg80211_rtw_mgmt_frame_register,
+-- 
+2.32.0.windows.2
+
