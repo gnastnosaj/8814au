@@ -1,0 +1,17 @@
+From 444090570a72398f1cd24b5c8ddfaaf17ba1bb20 Mon Sep 17 00:00:00 2001
+From: Jason Tsang <jasontsang.dev@gmail.com>
+Date: Thu, 6 Jan 2022 08:12:01 +0800
+Subject: [PATCH] Fixes for compiling against OpenWRT tree
+
+---
+ include/linux/{wireless.h => old_unused_rtl_wireless.h} | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+ rename include/linux/{wireless.h => old_unused_rtl_wireless.h} (100%)
+
+diff --git a/include/linux/wireless.h b/include/linux/old_unused_rtl_wireless.h
+similarity index 100%
+rename from include/linux/wireless.h
+rename to include/linux/old_unused_rtl_wireless.h
+-- 
+2.32.0.windows.2
+
